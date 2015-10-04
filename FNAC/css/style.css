@@ -1,0 +1,338 @@
+* { margin: 0px; padding:0px; position: relative; }
+/*body {
+	background-color: white;
+	font-family: sans-serif, arial;
+}
+header {
+	padding: 10px;
+	border-bottom: solid 1px #888888;
+}
+
+
+-*a:link, a:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: Chocolate;
+	border: dotted 1px white;
+	transition: all 0.5s ease;
+}
+a:hover {
+	border-bottom: dotted 1px Chocolate;
+}
+
+nav li {
+	list-style-type: none;
+	display: inline-block;
+}
+nav a:link, nav a:visited{
+	display: block;
+	padding: 10px;h
+	border: none;
+}
+nav a:hover  {
+	border: none;*/
+	/*background-color: Chocolate;*/
+	/*color: white;	
+}
+section {
+	padding: 10px;
+	min-height: 300px;
+}
+section table {
+	margin: 20px;
+	border-collapse: collapse;
+}
+section td {
+	border-bottom: solid 1px #888888;
+	padding: 10px;
+}
+section p {
+	margin: 20px;
+}
+
+footer {
+	border-top: solid 1px #888888;
+	padding: 10px;
+	font-size: 0.8em;
+}*/
+
+/*#logo {
+	width: 100px;
+	height: 100px;
+}
+
+.btnConnect {
+  background: #FFFFFF;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 15px;
+  padding: 10px 10px 10px 10px;
+  border: solid #bcc0c2 1px;
+  text-decoration: none;
+  margin-top:6px;
+  margin-right:0px;
+
+}
+
+.btnConnect:hover {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: -moz-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: -ms-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: -o-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: linear-gradient(to bottom, #ffffff, #b8b7b6);
+  text-decoration: none;
+}
+
+.liheader{
+	display : inline-block;
+	float:right;
+}
+
+label
+{
+	display: block;
+	width: 150px;
+	float: left;
+}
+#connecFormdiv{
+	display : none;
+	
+}
+
+#inscription
+{
+	z-index:100;
+	display : none;
+	position:fixed;
+	padding-left:40%;
+	
+
+}
+#forminscr
+{
+	background-color:#E9EAED;
+	padding:5%;
+}
+
+.btnInscr {
+  background: #FFFFFF;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 15px;
+  padding: 10px 10px 10px 10px;
+  border: solid #bcc0c2 1px;
+  text-decoration: none;
+  margin-top:6px;
+  margin-right:0px;
+
+}
+
+.btnInscr:hover {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: -moz-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: -ms-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: -o-linear-gradient(top, #ffffff, #b8b7b6);
+  background-image: linear-gradient(to bottom, #ffffff, #b8b7b6);
+  text-decoration: none;
+}*/
+
+.logo{
+	padding: 0px;
+	height: 100%;
+	border-right: 1px solid #D8D8D8;
+	text-align: center;
+	position: absolute;
+	width: 200px;
+
+}
+#logo{
+	display: inline-block;
+	
+}
+#logo:hover{
+	cursor: pointer;
+}
+.header{
+
+	position: fixed;
+	width: 100%;
+	height: 66px;
+	z-index: 1300;
+	top: 0px;
+	background: #FFF none repeat scroll 0% 0%;
+	border-bottom: 1px solid #D8D8D8;
+	display: block;
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 12px;
+	line-height: 1.42857;
+	color: #333;
+
+}
+.container{
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 199px;
+	height: 100%;
+}
+.search{
+	border-bottom: 1px solid #D8D8D8;
+	position: relative;
+	width: 37.5%;
+	float: left;
+	min-height: 1px;
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 100%;
+	background-color: #cdcdcd ;
+	
+}
+
+.search:hover{
+	 background: #9f9d9d;
+     transition: background 0.7s;
+}
+.menu{
+	width: 62.5%;
+	float: left;
+	min-height: 1px;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-family: "Roboto",Helvetica,Arial,sans-serif;
+	font-size: 12px;
+	line-height: 1.42857;
+	color: #333;
+	height: 100%;
+}
+
+
+#fieldset{
+	background-color: #FFFFFF;
+	position: relative;
+	padding : auto;	
+	margin : 8px;
+	height: 50px;
+	
+	
+}
+.boxselect{
+	display : inline-block;
+	width:100px;
+    
+}
+#searchselect{
+	width:100px;
+	height : 50px;
+	border : none;
+	font-family: Verdana;
+	overflow: hidden;
+	border: 0 !important;.  
+
+
+}
+#searchinput{
+	display : inline-block;
+	height : 50px;
+	border : none;
+	font-family: Verdana;
+
+	
+	
+}
+
+#searchicon{
+	height : 30px;
+	width: : 30px;
+	
+}
+#searchbtn:hover{
+	cursor: pointer;
+}
+
+#searchbtn{
+	background-color: white;
+	border : none;
+	height : 50px;
+	width: : 40px;
+	float : right;
+	
+}
+
+#connection{
+	display : inline-block;
+}
+#inscription{
+	display : inline-block;
+}
+
+#profil{
+	display : none;
+}
+ul{
+	height: 100%;
+}
+.limenu{
+	height: 100%;
+	
+}
+.btnmenu {
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Verdana;
+  color: #000000;
+  font-size: 20px;
+  border: solid #000000 0px;
+  text-decoration: none;
+  height: 100%;
+  text-align: center;
+  vertical-align: top;
+  width: 180px;
+
+}
+
+.btnmenu:hover {
+  background: #fafafa;
+  background-image: -webkit-linear-gradient(top, #fafafa, #ffffff);
+  background-image: -moz-linear-gradient(top, #fafafa, #ffffff);
+  background-image: -ms-linear-gradient(top, #fafafa, #ffffff);
+  background-image: -o-linear-gradient(top, #fafafa, #ffffff);
+  background-image: linear-gradient(to bottom, #fafafa, #ffffff);
+  text-decoration: none;
+  border-bottom : 2px solid black;
+  border-left : 1px solid #fafafa;
+  border-right : 1px solid #fafafa;
+
+}
+
+footer{
+	border-top: 1px solid #D8D8D8;
+}
+
+#connectFormdiv{
+	border : solid black 1px;
+	padding :10px;
+	margin : 20px;
+	width: 150px;
+	display: block;
+}
+.labelconnect{
+	display: block; 
+    width: 150px;
+}
+
+.headercache{
+	display : block;
+	height :70px;
+}
