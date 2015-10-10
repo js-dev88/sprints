@@ -11,7 +11,13 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 ?>
 </div>
 
-<h2 id="profil">Mon Profil</h2>
+<h2 id="profil">
+	<?php if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
+		$client=unserialize($_SESSION['client']);
+        $pseudo = ucfirst($client->cli_pseudo);
+        echo $pseudo;		
+	}?>
+	- Mon Profil</h2>
 <hr>
 <div id="info_client">
 <form id='formupdate' action='#'>

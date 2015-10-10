@@ -13,6 +13,6 @@
 
 </body>
 <footer>
-Copyleft 2015 #FlorianSuce #Yanncoupable
+Copyleft 2015 
 </footer>
 </html>

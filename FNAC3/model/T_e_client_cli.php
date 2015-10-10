@@ -26,9 +26,7 @@ class T_e_client_cli extends Model {
 			$row = $st->fetch();
 			$field = "cli_id";
 			$this->$field = $row[$field];
-			echo $this->$field;
-			
-			
+						
 		} else {
 			$st = db()->prepare("select * from t_e_client_cli where cli_id=:id");
 			$st->bindValue(":id", $id);
@@ -73,10 +71,7 @@ class T_e_client_cli extends Model {
 				$this->$varName = $value;
 				$class = get_class($this);
 				$table = strtolower($class);
-				$id = $fieldName;
-				echo "<br/><br/><br/><br/>Valeurchamp : ".$id."<br/>";
-				// throw new Exception("id de fou :".$id);
-				
+				$id = $fieldName;				
 				if (isset($value->$id)) {
 					
 					$st = db()->prepare("update t_e_client_cli set id$fieldName=:val where cli_id=:id");

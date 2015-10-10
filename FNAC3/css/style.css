@@ -42,10 +42,12 @@ input{
 
 margin:3px;
 border-radius: 10px;	
+
 }
 
 label{
 	style:dotted;
+
 }
 
 section {
@@ -432,4 +434,35 @@ footer{
 	
 }
 	
-
+.lblInscript{
+    display: block; 
+    width: 400px;
+    font-weight: bold;
+    margin : 5px;
+}
+.iptInscript{
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  box-shadow: inset 0 0 0 1px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.iptInscript:focus{
+	border: solid 5px #969696;
+}	
+#iptsubIns{
+	-webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: Verdana;
+  color: #ffffff;
+  font-size: 15px;
+  background: #F5B027;
+  padding: 5px;
+  text-decoration: none;
+  margin : 21px;
+  width: 200px;
+}
+.msgErreur{
+	color : red;
+	font-weight: bold;
+}

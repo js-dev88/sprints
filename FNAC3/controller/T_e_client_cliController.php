@@ -43,100 +43,167 @@ class T_e_client_cliController extends Controller {
   	}
 
 	public function add () {
-			if(isset($_POST['cli_civilite']) &&
-			   isset($_POST['cli_pseudo']) &&
+		//verifications formulaire inscription
+			$data = array();
+
+			if(isset($_POST['cli_pseudo']) &&
 			   isset($_POST['cli_motpasse']) && 
 			   isset($_POST['mdp_confirm']) && 
 			   isset($_POST['cli_mel']) && 
 			   isset($_POST['mail_confirm']) && 
 			   isset($_POST['cli_nom'])  && 
-			   isset($_POST['cli_prenom']) &&
-			   !empty($_POST['cli_pseudo']) && 
-			   !empty($_POST['cli_motpasse']) && 
-			   !empty($_POST['mdp_confirm']) && 
-			   !empty($_POST['cli_mel']) && 
-			   !empty($_POST['mail_confirm']) && 
-			   !empty($_POST['cli_nom'])  && 
-			   !empty($_POST['cli_prenom']) &&
-			   $_POST['cli_motpasse'] == $_POST['mdp_confirm'] &&
-			   $_POST['cli_mel'] == $_POST['mail_confirm'] 
-			   //ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØŒŠþÙÚÛÜÝŸàáâãäåæçèéêëìíîïðñòóôõöøœšÞùúûüýÿ¢ß¥£™©®ª×÷±²³¼½¾µ¿¶·¸º°¯§…¤¦≠¬ˆ¨‰±×÷²³€†‡\'“”«»•\]\[\}\{#\,;<>~()|&^@%*=/*+-%?!¤"
-			  // !preg_match('ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØŒŠþÙÚÛÜÝŸàáâãäåæçèéêëìíîïðñòóôõöøœšÞùúûüýÿ¢ß¥£', $_POST["cli_pseudo"] && $_POST["cli_motpasse"] && $_POST["mdp_confirm"] && $_POST['cli_nom'] && $_POST['cli_prenom']) &&
-			   //!preg_match('ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØŒŠþÙÚÛÜÝŸàáâãäåæçèéêëìíîïðñòóôõöøœšÞùúûüýÿ¢ß¥£™©®ª×÷±²³¼½¾µ¿¶·¸º°¯§…¤¦≠¬ˆ¨‰±×÷²³€†‡\'“”«»•][}{#,;<>~()|&^@%*=/*+-%?!¤"abcdefghijklmnopqrstuvwxyz', $_POST['cli_telfixe'] && $_POST['cli_telportable'])
-			  )		{
-		 
-			
+			   isset($_POST['cli_prenom']) && 
+			   isset($_POST['cli_telfixe'])&&
+			   isset($_POST['cli_telportable'])){
+
+			   	$pattern = '/[\[\]* + ? | { } () ^ ." <> ! $ ; : § , ¨ & ~ \\\ \/ @ = ]/';
+			    $patterntel = '/^0[1-68][0-9]{8}$/';
+
+			   //verif civilité
+			   if(empty($_POST['cli_civilite'])){
+					$msgerror = "Veuillez choisir une civilité";
+					$data [] = $msgerror;
+				}
+
+			   //verif pseudos
+
+				if(empty($_POST['cli_pseudo'])){
+					$msgerror = "Le champ Pseudo est vide";
+					$data [] = $msgerror;
+				}
+				elseif(preg_match($pattern, $_POST['cli_pseudo'])){
+					$msgerror = "Caractères spéciaux interdits dans le champ Pseudo";
+					$data [] = $msgerror;
+				}
+
+				//verifs mdp & confirmation
+				if(empty($_POST['cli_motpasse'])){
+					$msgerror = "Le champ Mot de passe est vide";
+					$data [] = $msgerror;
+				}
+			    if(empty($_POST['mdp_confirm'])){
+					$msgerror = "Le champ Confirmez votre mot de passe est vide";
+					$data [] = $msgerror;
+				}
+				if(preg_match($pattern, $_POST['cli_motpasse'])) {
+					$msgerror = "Caractères spéciaux interdits dans le champ Mot de passe";
+					$data [] = $msgerror;
+				}
+				if (strlen($_POST['cli_motpasse']) < 8 || strlen($_POST['cli_motpasse']) > 15){
+					$msgerror = "Le mot de passe doit contenir entre 8 et 15 caractères alphanumériques";
+					$data [] = $msgerror;
+				}
+				if($_POST['cli_motpasse'] != $_POST['mdp_confirm']){
+					$msgerror = "Le mot de passe et la confirmation ne correspondent pas";
+					$data [] = $msgerror;
+				}
+
+				//verif mail
+				if(empty($_POST['cli_mel'])){
+					$msgerror = "Le champ Adresse email est vide";
+					$data [] = $msgerror;
+				}else if (!filter_var($_POST['cli_mel'], FILTER_VALIDATE_EMAIL)){
+					$msgerror = "Le format de l'adresse mail est invalide";
+					$data [] = $msgerror;
+				}
+				if(empty($_POST['mail_confirm'])){
+					$msgerror = "Le champ Confirmez votre adresse email est vide";
+					$data [] = $msgerror;
+				}
+				if($_POST['cli_mel'] != $_POST['mail_confirm']){
+					$msgerror = "L\'email et la confirmation ne correspondent pas";
+					$data [] = $msgerror;
+				}
+
+				//verif nom et prenom
+
+				if(empty($_POST['cli_nom'])){
+					$msgerror = "Le champ Nom est vide";
+					$data [] = $msgerror;
+				}elseif(preg_match($pattern, $_POST['cli_nom'])){
+					$msgerror = "Caractères spéciaux interdits dans le champ Nom";
+					$data [] = $msgerror;
+				}
+
+				if(empty($_POST['cli_prenom'])){
+					$msgerror = "Le champ Prénom est vide";
+					$data [] = $msgerror;
+				}elseif(preg_match($pattern, $_POST['cli_prenom'])){
+					$msgerror = "Caractères spéciaux interdits dans le champ Prénom";
+					$data [] = $msgerror;
+				}
+
+				//verif tel 
+
+				if(empty($_POST['cli_telfixe']) && empty($_POST['cli_telportable'])){
+					$msgerror = "Au moins un numéro de téléphone doit être renseigné";
+					$data [] = $msgerror;
+				}
+				if((!empty($_POST['cli_telfixe'])) && !preg_match($patterntel,$_POST['cli_telfixe'])){
+						$msgerror = "Format téléphone fixe invalide";
+						$data [] = $msgerror;
+				}
+				if((!empty($_POST['cli_telportable'])) && !preg_match($patterntel,$_POST['cli_telportable'])){
+						$msgerror = "Format téléphone portable invalide";
+					    $data [] = $msgerror;
+				}
+
+
+				if(!empty($data)){
+					$this->render("add",$data);
+				}else{
+					$client = new T_e_client_cli();
+						
+						$client->cli_mel=parameters()["cli_mel"];
+						$client->cli_motpasse=md5(parameters()["cli_motpasse"]);
+						$client->cli_pseudo=parameters()["cli_pseudo"];
+						$client->cli_civilite=parameters()["cli_civilite"];
+						$client->cli_nom=parameters()["cli_nom"];
+						$client->cli_prenom=parameters()["cli_prenom"];
+						$client->cli_telfixe=parameters()["cli_telfixe"];
+						$client->cli_telportable=parameters()["cli_telportable"];
+
+						
+					
+					$client2 = new T_e_client_cli($client->cli_id);
+					$_SESSION['client'] = serialize($client2);
+					
+					$this->render("view",$client2);
+					
+					
+				}
+
+			   	/*foreach($_POST as $cle=>$val){
+					if(empty($val)){
+							$msgerror = "Veuillez remplir tous les champs obligatoires";
+							$data [] = $msgerror;
+							$this->render("add",$data);
+					$pattern = '/^def/';
+
+
+					}else{
 				
-			
-			$client = new T_e_client_cli();
-			
-			$client->cli_mel=parameters()["cli_mel"];
-			$client->cli_motpasse=md5(parameters()["cli_motpasse"]);
-			$client->cli_pseudo=parameters()["cli_pseudo"];
-			$client->cli_civilite=parameters()["cli_civilite"];
-			$client->cli_nom=parameters()["cli_nom"];
-			$client->cli_prenom=parameters()["cli_prenom"];
-			$client->cli_telfixe=parameters()["cli_telfixe"];
-			$client->cli_telportable=parameters()["cli_telportable"];
-			$this->render("index");
+						$client = new T_e_client_cli();
+						
+						$client->cli_mel=parameters()["cli_mel"];
+						$client->cli_motpasse=md5(parameters()["cli_motpasse"]);
+						$client->cli_pseudo=parameters()["cli_pseudo"];
+						$client->cli_civilite=parameters()["cli_civilite"];
+						$client->cli_nom=parameters()["cli_nom"];
+						$client->cli_prenom=parameters()["cli_prenom"];
+						$client->cli_telfixe=parameters()["cli_telfixe"];
+						$client->cli_telportable=parameters()["cli_telportable"];
+						//$this->render("index");
 				
-			
-		}
-		else {
+					}
+				}	*/
+			}else {	
 			$this->render("add");
-		}
-		
-
-
+			}
 	}
 	
-public function forminscriptionclient(){
-			
-		if(!empty($_POST['cli_civilite']))
-		{
-			echo "0";
-		}
-		else if(!empty($_POST['cli_motpasse'])){
-			echo "1";
-		}
-		else if(!empty($_POST['mdp_confirm'])){
-			echo "2";
-		}
-		else if($_POST['cli_motpasse'] != $_POST['mdp_confirm']){
-			echo "3";
-		}
-		else if(!empty($_POST['cli_mel'])){
-			echo "4";
-		}
-		else if((filter_var($_POST['cli_mel'], FILTER_VALIDATE_EMAIL)) == FALSE) {    
-			echo "9";	//mail invalide					
-		}
-		else if(!empty($_POST['mail_confirm'])){
-			echo "5";
-		}
-		else if((filter_var($_POST['mail_confirm'], FILTER_VALIDATE_EMAIL)) == FALSE) {    
-			echo "10";	//mail invalide					
-		}
-		else if($_POST['cli_mel'] =! $_POST['mail_confirm']){
-			echo "6";
-		}else if(!empty($_POST['cli_nom'])){
-			echo "7";
-		}else if(!empty($_POST['cli_prenom'])){
-			echo "8";
-		}
-		else if(!empty($_POST['cli_pseudo'])){
-			echo "11";
-		}
-		else {
-			echo "Wtf, un bug inconnu !";
-		}	
-	}
-
 	public function formconnectaction(){
 			
-		
-		
-
 		if(isset($_POST['connectionEmail']) && isset($_POST['connectionMdp'])){
 
 			if (empty($_POST['connectionEmail'])){

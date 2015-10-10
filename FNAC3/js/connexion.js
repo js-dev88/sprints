@@ -51,6 +51,7 @@ function affichemenu(){
 	if($("#btndeconnection").css('display')=='block' )
 	{
 		
+
 		$("#connectFormdiv").css('display','none');
 			// $("#btnconnection,#btninscription").css('display','none');
 			$("#btnconnection,#btninscription").hide();
@@ -61,7 +62,7 @@ function affichemenu(){
 			$("#btnprofil").show();
 	    if($("#profil").css('display')=='block'){
 			 // $("#btnprofil").css('display','none');
-			 $("#btnprofil").show();
+			 $("#btnprofil").hide();
 		}
 	}
 }

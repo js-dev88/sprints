@@ -1,6 +1,7 @@
 jQuery(document).ready(function(){
+	
 
-$("#forminscriptionclient").submit(function() {
+/*$("#forminscriptionclient").submit(function() {
      $.ajax(	{
 			type : "POST",
 			url : "?r=t_e_client_cli/forminscriptionclient",
@@ -44,7 +45,7 @@ $("#forminscriptionclient").submit(function() {
 			}
 		}); 
 		return false;
-	});
+	});*/
 	
 	
 });

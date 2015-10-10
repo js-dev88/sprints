@@ -15,15 +15,16 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 <hr>
 <div id="info_client">
 <?php
+
 	echo "<ul>";
-		
+		foreach($data as $adresse){
 			echo "<li>";
-			echo $data->adr_id;
-			echo $data->cli_id;
-			echo $data->adr_nom;
-			echo $data->adr_type;
-			echo $data->adr_rue;
+			echo $adresse->adr_id;
+			echo $adresse->cli_id;
+			echo $adresse->adr_nom;
+			echo $adresse->adr_type;
+			echo $adresse->adr_rue;
 			echo "</li>";	
-	
+		}
 		echo "</ul>";
 ?> 

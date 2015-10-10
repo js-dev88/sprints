@@ -13,7 +13,7 @@
 <table>
 <?php	
 	
- 	print_r($data);
+ 	
 
  	
 ?>

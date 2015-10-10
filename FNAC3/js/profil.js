@@ -11,22 +11,15 @@ jQuery(document).ready(function(){
 				success : function(msg) {
 				$('#msgModif').html("<p>Informations enregistrées</p>");
 				refresh();
+				//je sais pas pourquoi mais j'ai la vague impression d'avoir violenté le concept d'Ajax là :(
+				location.reload();
 				}
-
-
-
-
-
-
 		});
-
-
-
-
-
 	});
+
 	$('#modif_info_form').html('Enregistrer les modifications');
 	$("#profil").prepend('<img id="imageprofil" src="image/connecter logo.png"/>');
+	$("#m_inscrire").prepend('<img id="imageprofil" src="image/connecter logo.png"/>');
 	$('.input_info').hide();
 	$('.info_hide').show();
 	$('#modif_info_form').hide();
