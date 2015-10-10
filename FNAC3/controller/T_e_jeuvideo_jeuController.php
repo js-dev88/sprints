@@ -9,9 +9,10 @@ class T_e_jeuvideo_jeuController extends Controller {
 	public function view() {
 		try {
 			
-			$b = new T_e_jeuvideo_jeu();
-			$this->render("view");
+			$b = new T_e_jeuvideo_jeu(parameters()["id"]);
+			$this->render("view",$b);
 		} catch (Exception $e) {
+			print_r($e);
 			(new SiteController())->render("index");
 		    $this->render("error");
 		}

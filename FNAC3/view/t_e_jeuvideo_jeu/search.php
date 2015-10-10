@@ -10,7 +10,7 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 ?>
 </div>
 <div>
-<h2>Recherche pour Jeux vidéos</h2>
+<h2>Résultats de la recherche</h2>
 <table>
 <?php
 	if(empty($data)){
@@ -18,10 +18,18 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 
 	}else{
 		foreach($data as $t_e_jeuvideo_jeu){
+			
 			echo "<tr>";
-			echo"<td>"."Id jeu : ".$t_e_jeuvideo_jeu->jeu_id."</td>";
-			echo"<td>"."Nom jeu : ".$t_e_jeuvideo_jeu->jeu_nom."</td>";
+			echo "<td><a href=\"?r=t_e_jeuvideo_jeu/view&id=".$t_e_jeuvideo_jeu->jeu_id."\">";
+			foreach(T_e_photo_pho::FindAll() as $photo){
+				if($photo->jeu_id == $t_e_jeuvideo_jeu->jeu_id )
+				echo "<img src=\"".$photo->pho_url."\"/>";
+			}
+			echo "</a></td>";
+			echo"<td>"."Jeu : ".$t_e_jeuvideo_jeu->jeu_nom."</td>";
+			echo"<td>"."Prix : ".$t_e_jeuvideo_jeu->jeu_prixttc." €</td>";
 			echo "</tr>";
+			
 		}
 	}
 ?>

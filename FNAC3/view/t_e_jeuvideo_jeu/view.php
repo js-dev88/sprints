@@ -6,3 +6,21 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 }
 ?>
 </div>
+
+<h2 id="nomjeu"><?php echo $data->jeu_nom;?></h2>
+<hr>
+
+<table>
+<?php
+
+	echo "<ul>";
+			echo "<li>";
+			echo "nom : ".$data->jeu_nom;
+			echo "description :".$data->jeu_description;
+			echo $data->jeu_dateparution;
+			echo $data->jeu_codebarre;
+			echo $data->jeu_publiclegal;
+			echo "</li>";	
+		echo "</ul>";
+?> 
+<table>

@@ -10,6 +10,7 @@ class T_e_jeuvideo_jeu extends Model {
 	protected $_jeu_dateparution;
 	protected $_jeu_prixttc;
 	protected $_jeu_codebarre;
+	protected $_jeu_publiclegal;
 	protected $_jeu_stock;
 	
 	public function __construct($id=null) {
@@ -36,6 +37,7 @@ class T_e_jeuvideo_jeu extends Model {
 				$this->_jeu_dateparution = $row["jeu_dateparution"];
 				$this->_jeu_prixttc = $row["jeu_prixttc"];
 				$this->_jeu_codebarre = $row["jeu_codebarre"];
+				$this->_jeu_publiclegal = $row["jeu_publiclegal"];
 				$this->_jeu_stock = $row["jeu_stock"];
 			}
 		}
