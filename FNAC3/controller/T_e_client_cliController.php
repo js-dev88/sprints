@@ -57,7 +57,8 @@ class T_e_client_cliController extends Controller {
 			   isset($_POST['cli_telportable'])){
 
 			   	$pattern = '/[\[\]* + ? | { } () ^ ." <> ! $ ; : § , ¨ & ~ \\\ \/ @ = ]/';
-			    $patterntel = '/^0[1-68][0-9]{8}$/';
+			    $patterntelfixe = '/^0[1-58][0-9]{8}$/';
+			    $patterntelport = '/^0[67][0-9]{8}$/';
 
 			   //verif civilité
 			   if(empty($_POST['cli_civilite'])){
@@ -106,6 +107,15 @@ class T_e_client_cliController extends Controller {
 					$msgerror = "Le format de l'adresse mail est invalide";
 					$data [] = $msgerror;
 				}
+				$listeclients = T_e_client_cli::findAll();
+				foreach($listeclients as $t_e_client_cli){
+					if($_POST['cli_mel']==$t_e_client_cli->cli_mel){
+						$msgerror = "Adresse email déjà utilisée";
+						$data [] = $msgerror;
+					}
+
+				}
+
 				if(empty($_POST['mail_confirm'])){
 					$msgerror = "Le champ Confirmez votre adresse email est vide";
 					$data [] = $msgerror;
@@ -139,13 +149,21 @@ class T_e_client_cliController extends Controller {
 					$msgerror = "Au moins un numéro de téléphone doit être renseigné";
 					$data [] = $msgerror;
 				}
-				if((!empty($_POST['cli_telfixe'])) && !preg_match($patterntel,$_POST['cli_telfixe'])){
+				if((!empty($_POST['cli_telfixe'])) && !preg_match($patterntelfixe,$_POST['cli_telfixe'])){
 						$msgerror = "Format téléphone fixe invalide";
 						$data [] = $msgerror;
 				}
-				if((!empty($_POST['cli_telportable'])) && !preg_match($patterntel,$_POST['cli_telportable'])){
+				if((!empty($_POST['cli_telportable'])) && !preg_match($patterntelport,$_POST['cli_telportable'])){
 						$msgerror = "Format téléphone portable invalide";
 					    $data [] = $msgerror;
+				}
+				foreach($listeclients as $t_e_client_cli){
+					if($_POST['cli_telportable']==$t_e_client_cli->cli_telportable){
+						$msgerror = "Numéro de téléphone portable déjà utilisé";
+						$data [] = $msgerror;
+						break;
+					}
+
 				}
 
 
@@ -169,34 +187,9 @@ class T_e_client_cliController extends Controller {
 					$_SESSION['client'] = serialize($client2);
 					
 					$this->render("view",$client2);
-					
-					
+								
 				}
 
-			   	/*foreach($_POST as $cle=>$val){
-					if(empty($val)){
-							$msgerror = "Veuillez remplir tous les champs obligatoires";
-							$data [] = $msgerror;
-							$this->render("add",$data);
-					$pattern = '/^def/';
-
-
-					}else{
-				
-						$client = new T_e_client_cli();
-						
-						$client->cli_mel=parameters()["cli_mel"];
-						$client->cli_motpasse=md5(parameters()["cli_motpasse"]);
-						$client->cli_pseudo=parameters()["cli_pseudo"];
-						$client->cli_civilite=parameters()["cli_civilite"];
-						$client->cli_nom=parameters()["cli_nom"];
-						$client->cli_prenom=parameters()["cli_prenom"];
-						$client->cli_telfixe=parameters()["cli_telfixe"];
-						$client->cli_telportable=parameters()["cli_telportable"];
-						//$this->render("index");
-				
-					}
-				}	*/
 			}else {	
 			$this->render("add");
 			}
