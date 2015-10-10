@@ -12,6 +12,10 @@ class SiteController extends Controller {
 		$this->render("index");
 	}
 
+	public function error404(){
+		$this->render("error404");
+	}
+
 
 
 

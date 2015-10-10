@@ -17,41 +17,41 @@
 				<div id="fieldset">
 					<div class="boxselect">
 						<select  id="searchselect" name="choiceconsole">
-							<option name="Consoles" id="console" value="console">Toutes les consoles</option>
+							<option name="Consoles" id="console" value="console">Consoles</option>
 								<?php
 								  $listeConsole=T_r_console_con::findAll();
 								  foreach($listeConsole as $t_r_console_con) {
-									echo"<option>".$t_r_console_con->con_nom."</option>";
-									}
-								?>
-								
-							
+								  	$val = $t_r_console_con->con_nom;
+									echo "<option value =\"".$val."\"";
+								    if(isset($_POST["choiceconsole"]) && $_POST["choiceconsole"] == $val)
+								    	 echo 'selected="selected"';
+								    echo ">".$val."</option>";
+								  }?>	
 						</select>	
 						
+					</div>				
+					<div class="boxselect">
+						<select  id="searchselect" name="choicerayon">
+								<option value="rayon" name="rayon">Rayons</option>
+									<?php
+									  $listeRayon=T_r_rayon_ray::findAll();
+									    foreach($listeRayon as $t_r_rayon_ray) {
+										  	$val = $t_r_rayon_ray->ray_nom;
+											echo "<option value =\"".$val."\"";
+										    if(isset($_POST["choicerayon"]) && $_POST["choicerayon"] == $val)
+										    	 echo 'selected="selected"';
+										    echo ">".$val."</option>";
+										}?>	
+						</select>			
 					</div>
-					
-					
 
-					<input id="searchinput" type="text" name="mot_clef" placeholder=" Que recherchez-vous?"></input>
+					<input id="searchinput" type="text" name="mot_clef" placeholder=" Que recherchez-vous?" 
+					value ="<?php echo(isset($_POST['mot_clef']) ? $_POST['mot_clef'] : null);?>"></input>
 					<a id="searchlink">
 						<button id="searchbtn" type="submit" title ="lancer la recherche"  >
 							<img id="searchicon" src="image/searchicon.png" alt="" />
 						</button>
 					</a>
-					
-					<div class="boxselect">
-					
-					<select  id="searchselect" name="choicerayon">
-							<option value="rayon" name="rayon">Tous les rayons</option>
-								<?php
-								  $listeRayon=T_r_rayon_ray::findAll();
-								  foreach($listeRayon as $t_r_rayon_ray) {
-									echo"<option>".$t_r_rayon_ray->ray_nom."</option>";
-									}
-								?>
-					</select>	
-					
-					</div>
 					
 				</div>
 			</div>

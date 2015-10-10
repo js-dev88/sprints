@@ -159,27 +159,26 @@ footer {
 }
 .boxselect{
 	display : inline-block;
-	width:5vw;
+	
+
 
     
 }
 #searchselect{
-	width:10vw;
+	width:8vw;
 	height : 45px;
 	border : none;
 	font-family: Verdana;
 	overflow: hidden;
 	border: 0 !important;
 	display : inline-block; 
-
-
-
+	margin-right: 1px;
 }
 
 
 #searchinput{
 
-	margin-left: 5vw;
+	
 	display : inline-block;
 	height : 45px;
 	border : none;
@@ -196,8 +195,9 @@ footer {
 
 #searchicon{
 	height : 60%;
-	width: : 60%;
+	width: : 1vw;
 	padding : 0px;
+	margin : 0px;
 	z-index: 250;
 	display : inline-block;
 
@@ -216,13 +216,12 @@ footer {
 	background-color: white;
 	border : none;
 	height : 100%;
-	width: : 7vw;
+	width: : 1vw;
 	float : right;
-	padding : 1 px;
-	/*margin-right : 0px;
-	margin-left : 0px;*/
 	display : inline-block;
 	z-index:250;
+	margin : 0px;
+	padding :0px;
 
 	
 }
