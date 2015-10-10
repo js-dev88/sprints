@@ -158,7 +158,7 @@ class T_e_client_cliController extends Controller {
 					    $data [] = $msgerror;
 				}
 				foreach($listeclients as $t_e_client_cli){
-					if($_POST['cli_telportable']==$t_e_client_cli->cli_telportable){
+					if($_POST['cli_telportable']==$t_e_client_cli->cli_telportable && $_POST['cli_telportable'] != null){
 						$msgerror = "Numéro de téléphone portable déjà utilisé";
 						$data [] = $msgerror;
 						break;
