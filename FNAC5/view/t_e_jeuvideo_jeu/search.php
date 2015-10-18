@@ -23,13 +23,32 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 			echo "<td><a href=\"?r=t_e_jeuvideo_jeu/view&id=".$t_e_jeuvideo_jeu->jeu_id."\">";
 			foreach(T_e_photo_pho::FindAll() as $photo){
 				if($photo->jeu_id == $t_e_jeuvideo_jeu->jeu_id ){
-				 echo "<img src=\"".$photo->pho_url."\"/>";
+				 echo "<img src=\"".$photo->pho_url."\"/></a>";
 				 break;
 				}
 			}
-			echo "</a></td>";
-			echo"<td>"."<h3><a href=\"?r=t_e_jeuvideo_jeu/view&id=".$t_e_jeuvideo_jeu->jeu_id."\">".$t_e_jeuvideo_jeu->jeu_nom."</h3></a>";
+				$moyavis=0;
+				$nbAvis = count(T_e_avis_avi::FindAll($t_e_jeuvideo_jeu->jeu_id));
+				
+				echo"<p>Avis (".$nbAvis.")</p>";
+				foreach(T_e_avis_avi::FindAll($t_e_jeuvideo_jeu->jeu_id) as $avis){
+					$moyavis+=$avis->avi_note;
+				}
+				if($nbAvis!=0){
+					$moyavis= $moyavis/$nbAvis;
+				}else {
+					$moyavis=0;
+				}
+				echo "<p> Note Clients </p><span id='view_span' class='star S".round($moyavis)."'></span>";
+				echo "</a></td>";
+				
+			
+			
+			
+			echo"<td id='td_Central_Search'>"."<h3><a href=\"?r=t_e_jeuvideo_jeu/view&id=".$t_e_jeuvideo_jeu->jeu_id."\">".$t_e_jeuvideo_jeu->jeu_nom."</h3></a>";
+			
 			$date = date("d-m-Y",strtotime($t_e_jeuvideo_jeu->jeu_dateparution));
+			echo"<br/>";
 			echo "<p>Date de parution : ".$date."</p>";
 			$consoleNom = new T_r_console_con($t_e_jeuvideo_jeu->con_id);
 			$consoleNom = $consoleNom->con_nom;
@@ -39,23 +58,11 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 			echo "<p>Console : ".$consoleNom."</p>";
 			echo "<p>Editeur : ".$editeurNom."</p>";
 			
-			echo "<p>".$t_e_jeuvideo_jeu->jeu_publiclegal."</p>";
+			echo "<p>Public legal : ".$t_e_jeuvideo_jeu->jeu_publiclegal."</p>";
 			echo"</td>";
 			echo"<td><p>"."Prix : ".$t_e_jeuvideo_jeu->jeu_prixttc." €</p>";
 			echo "<p>En Stock :".$t_e_jeuvideo_jeu->jeu_stock." exemplaires</p>";
-			$moyavis=0;
-			foreach(T_e_avis_avi::FindAll($t_e_jeuvideo_jeu->jeu_id) as $avis)
-			{
-				$moyavis+=$avis->avi_note;
-			}
-			if(count(T_e_avis_avi::FindAll($t_e_jeuvideo_jeu->jeu_id))!=0)
-			{
-				$moyavis= $moyavis/count(T_e_avis_avi::FindAll($t_e_jeuvideo_jeu->jeu_id));
-			}
-			else {
-				$moyavis=0;
-			}
-			echo "<span class='star S".round($moyavis)."'></span>";
+			
 			echo "<a href='?r=t_e_commande_com/index'><div><p>Ajouter au panier</p><img id='boutonpanier' src='image/panier.png'></div></a></td>";
 			echo "</tr>";
 			

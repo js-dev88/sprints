@@ -689,6 +689,10 @@ video{
 #iptAdd, #iptAdd2{
 	width : 20vw;
 }
-
+#td_Central_Search{
+	width: 60vw;
+	vertical-align : top;	
+	padding-left: 10vw;
+}
 
 
