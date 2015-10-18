@@ -54,7 +54,7 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 			echo "<td  class=\"td_Jv_View\">";
 			echo "<p>".$data->jeu_prixttc." €</p>";
 			echo "<p>En stock : ".$data->jeu_stock." exemplaires</p>";
-			echo "<a href='?r=t_e_commande_com/index'><div><p>Ajouter au panier</p><img id='boutonpanier' src='image/panier.png'></div></a>";
+			echo "<a href='?r=t_e_commande_com/panier'><div><p>Ajouter au panier</p><img id='boutonpanier' src='image/panier.png'></div></a>";
 			
 
 			echo "</td>";

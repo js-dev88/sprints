@@ -57,16 +57,17 @@ function affichemenu(){
 		
 
 		$("#connectFormdiv").css('display','none');
-			// $("#btnconnection,#btninscription").css('display','none');
+			
 			$("#btnconnection,#btninscription").hide();
-	    //     $("#btnprofil").css({
-	    //     		'display' : 'inline-block',
-					// 'float' : 'right'
-					// 		     });	
+	   
 			$("#btnprofil").show();
 			$("#btnpanier").show();
+	    if($("#panier").css('display')=='block'){
+			 
+			 $("#btnpanier").hide();
+		}
 	    if($("#profil").css('display')=='block'){
-			 // $("#btnprofil").css('display','none');
+			 
 			 $("#btnprofil").hide();
 		}
 	}

@@ -83,7 +83,7 @@
 								</li>
 							</ul>
 						<li class="limenu" id="inscription"><button class ="btnmenu" onclick="window.location.href='?r=t_e_client_cli/add'" id="btninscription">M'inscrire</button></li>
-						<a href="?r=t_e_commande_com/index"/><button class ="btnmenu" id="btnpanier">Mon Panier</button></a>
+						<a href="?r=t_e_commande_com/panier"/><button class ="btnmenu" id="btnpanier">Mon Panier</button></a>
 						
 						<a href="?r=t_e_client_cli/view">															
 						<button class ="btnmenu" id="btnprofil">

@@ -34,7 +34,9 @@ class T_e_commande_comController extends Controller {
 		return $list;
 	}
 
-	
+	public function panier(){
+		$this->render("panier");
+	}
 	
   	public function logout(){
 		session_destroy();

@@ -156,7 +156,7 @@ function updateClient () {
 	
 
 	});
-
+	$("#panier").prepend('<img id="imagepanier" src="image/panier.png"/>');
 	$("#profil").prepend('<img id="imageprofil" src="image/connecter logo.png"/>');
 	$("#m_inscrire").prepend('<img id="imageprofil" src="image/connecter logo.png"/>');
 	$('.input_info').hide();

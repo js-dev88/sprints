@@ -63,7 +63,7 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 			echo"<td><p>"."Prix : ".$t_e_jeuvideo_jeu->jeu_prixttc." €</p>";
 			echo "<p>En Stock :".$t_e_jeuvideo_jeu->jeu_stock." exemplaires</p>";
 			
-			echo "<a href='?r=t_e_commande_com/index'><div><p>Ajouter au panier</p><img id='boutonpanier' src='image/panier.png'></div></a></td>";
+			echo "<a href='?r=t_e_commande_com/panier'><div><p>Ajouter au panier</p><img id='boutonpanier' src='image/panier.png'></div></a></td>";
 			echo "</tr>";
 			
 		}
