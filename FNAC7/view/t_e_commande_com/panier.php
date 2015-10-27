@@ -25,7 +25,7 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 		</tr>
 <?php
 	//foreach($data as $lignecommande){
-		print_r($data);
+		var_dump($data);
 		/*$jeu = new T_e_jeuvideo_jeu($lignecommande->jeu_id);
 		echo "<tr>";
 			echo"<td>".$lignecommande->$jeu->jeu_nom."</td>";

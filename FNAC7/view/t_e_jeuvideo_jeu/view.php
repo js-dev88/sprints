@@ -33,35 +33,63 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 				echo "</td>";
 				break;
 			}
-			echo "<td id=\"descJV\" class=\"td_Jv_View\">";
+	echo "<td id=\"descJV\" class=\"td_Jv_View\">";
 
-			echo "<p>".$data->jeu_description."</p>";
-			echo "<p>Date de parution : ".date("d-m-Y",strtotime($data->jeu_dateparution))."</p>";
-			$consoleNom = new T_r_console_con($data->con_id);
-			$consoleNom = $consoleNom->con_nom;
-			$editeurNom = new T_r_editeur_edi($data->edi_id);
-			$editeurNom = $editeurNom->edi_nom;
+	echo "<p>".$data->jeu_description."</p>";
+    echo "<p>Date de parution : ".$data->jeu_dateparution."</p>";
+	$consoleNom = new T_r_console_con($data->con_id);
+	$consoleNom = $consoleNom->con_nom;
+	$editeurNom = new T_r_editeur_edi($data->edi_id);
+	$editeurNom = $editeurNom->edi_nom;
 			
-			echo "<p>Console : ".$consoleNom."</p>";
-			echo "<p>Editeur : ".$editeurNom."</p>";
-			echo "<p>Public legal : ".$data->jeu_publiclegal."</p>";
-			echo "<p>Code barre : ".$data->jeu_codebarre."</p>";
+	echo "<p>Console : ".$consoleNom."</p>";
+	echo "<p>Editeur : ".$editeurNom."</p>";
+	echo "<p>Public legal : ".$data->jeu_publiclegal."</p>";
+	echo "<p>Code barre : ".$data->jeu_codebarre."</p>";
 			
 
-			echo "</td>";
+	echo "</td>";
 
-
-			echo "<td  class=\"td_Jv_View\">";
-			echo "<p>".$data->jeu_prixttc." €</p>";
-
-			//Bouton d'ajout de favoris
-			echo "<input id='btnFavoris' type='submit' name='addFav' value='Ajouter aux favoris'></input>";
+	
+	echo "<td  id=\"prixJV\" class=\"td_Jv_View\">";
+	
+	echo "<p>".$data->jeu_prixttc." €</p>";
+	if($data->jeu_stock != 0){
+		echo "<p>En stock : ".$data->jeu_stock." exemplaires</p>";
 		
-			echo "<p>En stock : ".$data->jeu_stock." exemplaires</p>";
-			echo "<a href='?r=t_e_commande_com/panier'><div><p>Ajouter au panier</p><img id='boutonpanier' src='image/panier.png'></div></a>";
+		$c = new T_e_commande_comController();
+		//var_dump($c->verifExistenceLC($data->jeu_id));
+		if(!$c->verifExistenceLC($data->jeu_id)){
+			echo "<span id='testLC'></span>";
+		}
 			
-
-			echo "</td>";
+			echo "<div id='divAddPanier'>";
+			echo "<form id='formAddPanier' method='post'>";
+			echo "<input type='hidden'  id='ipt_idjeu' value='".$data->jeu_id."' name='ipt_idjeu'/>";
+			echo "<p><label for='ipt_quantite'> Quantite : </label>";
+			echo "<input type='number' id='ipt_quantite' name='ipt_quantite' value ='1' min='1' max='".$data->jeu_stock."'/></p>";
+			echo "<p class='btnPoz'><input id='addPanierSubmit' class='btn_btn' type='submit' name='addPanierSubmit' value='Ajouter au Panier'/></p>";
+			echo "</form>";
+			echo "</p></div>";
+		
+			//form de suppression de la ligne de commande
+			echo "<div id='divDelPanier'>";
+			echo "<p class='btnPoz'><form id='formDelPanier' method='post'>";
+			echo "<input type='hidden' name='ipt_idjeusup' id='ipt_idjeusup' value='".$data->jeu_id."' />";
+			echo "<input type='submit' id='btnDelPanier' class='btn_btn' value='Supprimer du panier'/>";
+			echo "</form>";
+			echo "</p></div>";
+		
+	}else
+		echo "<p id='rupture'>En rupture de stock</p>";
+	//Bouton d'ajout de favoris
+	echo "<p class='btnPoz'><input id='btnFavoris' class='btn_btn' type='submit' name='addFav' value='Ajouter aux favoris'></input></p>";
+		
+			
+			
+			
+	
+	echo "</td>";
 				
 	echo "</tr>";
 ?> 

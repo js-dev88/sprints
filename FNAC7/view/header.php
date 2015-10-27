@@ -5,6 +5,7 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
 	<link rel="stylesheet" type="text/css" href="./css/animate.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="./image/fnacfvi.png" />
 </head>
 <body>
 	<main>
@@ -83,7 +84,17 @@
 								</li>
 							</ul>
 						<li class="limenu" id="inscription"><button class ="btnmenu" onclick="window.location.href='?r=t_e_client_cli/add'" id="btninscription">M'inscrire</button></li>
-						<a href="?r=t_e_commande_com/panier"/><button class ="btnmenu" id="btnpanier">Mon Panier</button></a>
+						
+						<!--bouton panier affichage traité dans connexion.js-->
+						<a href="?r=t_e_commande_com/panier"/><button class ="btnmenu" id="btnpanier">Mon Panier
+							<span id="msgNbArticles">
+								<?php 
+		        						//maj du compteur dans addPanier.js
+										$lc = new T_e_commande_comController();
+        								echo "(".$lc->nbArticlesPanier().")";
+								?>
+							</span>
+					    </button></a>
 						
 						<?php
 						if(isset($_SESSION['client']) && !empty($_SESSION['client'])){

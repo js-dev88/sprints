@@ -437,25 +437,15 @@ h2 #imagepanier{
   right: 0;
   position: absolute;
 }
-#btnFavoris{
-  -webkit-border-radius: 8;
-  -moz-border-radius: 8;
-  border-radius: 8px;
-  font-family: Verdana;
-  color: #ffffff;
-  font-size: 15px;
-  background: #F5B027;
-  padding: 5px;
-  text-decoration: none;
-  margin-top : 3%;
-  margin-left : 20px;
-  top : 5;
-  /*right: 0;*/
-  position: absolute;
-  cursor: pointer;
+
+#addPanierSubmit,#btnFavoris{
+	
+	margin-top: 0px;
 }
-
-
+.btnPoz{
+	margin-right: auto;
+	margin-left: auto;
+}
 
 .btn_btn {
 	 -webkit-border-radius: 8;
@@ -521,6 +511,9 @@ a:hover {
 .td_Jv_View{
 	border-bottom: none;
 	border-right : 1px solid grey;
+}
+#prixJV{
+	width : 35vw;
 }
 #btn_avis{
 	margin : 0px;
@@ -751,4 +744,14 @@ video{
 	padding:15px;
 	margin:5px;
 }
-
+#ipt_quantite{
+	width: 20%;
+	height : 20%;
+}
+#rupture{
+	color : red;
+}
+#btnDelPanier,#addPanierSubmit{
+	margin-right: 10%;
+	padding : 5px;
+}

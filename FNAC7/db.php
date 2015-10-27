@@ -1,6 +1,6 @@
 <?php
 
-/*$dsn = "pgsql:host=localhost;dbname=FNAC;";
+$dsn = "pgsql:host=localhost;dbname=FNAC;";
 $user = "postgres";
 $password = "password"; 
 try {
@@ -10,8 +10,8 @@ try {
 }
 
 // Pour éviter d'avoir à réutiliser "global" par la suite
-function db() { global $db; return $db; }*/
-
+function db() { global $db; return $db; }
+/*
 $dsn = "pgsql:host=localhost;dbname=info241;";
 $user = "info241";
 $password = "X1s9d1"; 
@@ -22,4 +22,4 @@ try {
 }
 
 // Pour éviter d'avoir à réutiliser "global" par la suite
-function db() { global $db; return $db; }
+function db() { global $db; return $db; }*/

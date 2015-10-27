@@ -69,7 +69,8 @@ function affichemenu(){
 		}	
 		 if($("#avisAbf").css('display')=='block'){
 			 $("#btnAbf").hide();
-		}	
+		}
+		//gestion du bouton panier affichage lors de la connexion et caché sur la page panier
 	    if($("#panier").css('display')=='block'){
 			 
 			 $("#btnpanier").hide();

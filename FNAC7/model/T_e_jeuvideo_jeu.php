@@ -34,7 +34,7 @@ class T_e_jeuvideo_jeu extends Model {
 				$this->_con_id = $row["con_id"];
 				$this->_jeu_nom = $row["jeu_nom"];
 				$this->_jeu_description = $row["jeu_description"];
-				$this->_jeu_dateparution = $row["jeu_dateparution"];
+				$this->_jeu_dateparution = date("d-m-Y",strtotime($row["jeu_dateparution"]));
 				$this->_jeu_prixttc = $row["jeu_prixttc"];
 				$this->_jeu_codebarre = $row["jeu_codebarre"];
 				$this->_jeu_publiclegal = $row["jeu_publiclegal"];

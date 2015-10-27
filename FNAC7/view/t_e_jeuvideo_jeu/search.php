@@ -46,9 +46,8 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 			
 			
 			echo"<td id='td_Central_Search'>"."<h3><a href=\"?r=t_e_jeuvideo_jeu/view&id=".$t_e_jeuvideo_jeu->jeu_id."\">".$t_e_jeuvideo_jeu->jeu_nom."</h3></a>";
-			$validjeu=$t_e_jeuvideo_jeu->jeu_id;
-			T_j_lignecommande_lecController::recupval($validjeu);
-			$date = date("d-m-Y",strtotime($t_e_jeuvideo_jeu->jeu_dateparution));
+			
+			$date = $t_e_jeuvideo_jeu->jeu_dateparution;
 			echo"<br/>";
 			echo "<p>Date de parution : ".$date."</p>";
 			$consoleNom = new T_r_console_con($t_e_jeuvideo_jeu->con_id);

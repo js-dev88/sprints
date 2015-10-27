@@ -34,13 +34,85 @@ class T_e_commande_comController extends Controller {
 			}
 		return $list;
 	}
-	
-	public function panier(){
+
+	public function listeArticlesPanier(){
 		$client=unserialize($_SESSION['client']);
 		$id = $client->cli_id;
 		$list = T_e_commande_com::findPanier($id);
-		$list2=T_j_lignecommande_lec::findAll($list[0]->com_id);
-		$this->render("panier", $list2);
+		return $list;
+	}
+	
+	public function verifExistenceLC($idjeu){
+		$bool = false;
+		$list = $this->listeArticlesPanier();
+		foreach($list as $lignecommande){
+			if($lignecommande->jeu_id == $idjeu){
+				return $bool = true;
+			}
+		}
+		return $bool;
+
+	}
+	public function panier(){
+		$list = $this->listeArticlesPanier();
+		$this->render("panier", $list);
+	}
+	
+	public function nbArticlesPanier(){
+		$list = $this->listeArticlesPanier();
+		$nbArticles = 0;
+		foreach($list as $lignecommande){
+			$nbArticles += $lignecommande->lec_quantite;
+		}
+		return $nbArticles;
+	}
+
+	public function addLigneCommande(){
+		$client=unserialize($_SESSION['client']);
+        $id = $client->cli_id;
+        $idpanier = T_e_commande_com::findIdPanier($id);
+        $json = array();
+
+        if(isset($_POST['ipt_idjeu']) &&isset($_POST['ipt_quantite'])){
+        	if(!empty($_POST['ipt_idjeu'])&&!empty($_POST['ipt_quantite'])){
+        		$idjeu=$_POST['ipt_idjeu'];
+        		$quantite = $_POST['ipt_quantite'];
+        		$lignecommande = T_e_commande_com::insertLigneCommande($idpanier,$idjeu,$quantite);
+        		
+        		$lc = new T_e_commande_comController();
+        		$json['nbArticles']=$lc->nbArticlesPanier();
+        		$json['jeu_id'] = $idjeu;
+        	}else{
+        	    $json['error'] = "error";
+        	}
+
+        }else{
+        	$json['error'] = "error";
+        }
+        echo json_encode($json); 
+	}
+
+	public function delLigneCommande(){
+		$client=unserialize($_SESSION['client']);
+        $id = $client->cli_id;
+        $idpanier = T_e_commande_com::findIdPanier($id);
+        $json = array();
+
+        if(isset($_POST['ipt_idjeusup'])){
+        	if(!empty($_POST['ipt_idjeusup'])){
+        		$idjeu=$_POST['ipt_idjeusup'];
+        		$lignecommande = T_e_commande_com::supprimeLigneCommande($idpanier,$idjeu);	
+        		$lc = new T_e_commande_comController();
+        		$json['nbArticles']=$lc->nbArticlesPanier();
+        		$json['jeu_id'] = $idjeu;
+        	}else{
+        		$json['error'] = "error";
+        	}
+
+        }else{
+        	$json['error'] = "error";
+        }		
+		echo json_encode($json);
 	}
 	
   	public function logout(){

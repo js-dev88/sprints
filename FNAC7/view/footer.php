@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/addElements.js"></script>
 	<script type="text/javascript" src="js/lightbox.js"></script>
 	<script type="text/javascript" src="js/avis_pouce.js"></script>
+	<script type="text/javascript" src="js/CRUDPanier.js"></script>
 
 </body>
 <footer>
