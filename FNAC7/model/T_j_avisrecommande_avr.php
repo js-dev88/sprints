@@ -66,5 +66,17 @@ class T_j_avisrecommande_avr extends Model {
 		$st->execute();
 		return $st->fetchColumn();
 	}
-
+	public static function countAvisrByClient($id_avi=null,$id_cli=null) {
+		$class = get_called_class();
+		$table = strtolower($class);
+		$st = db()->prepare("select count(*) from t_j_avisrecommande_avr where avi_id=$id_avi and cli_id=$id_cli");
+		// $st->bindValue(":id_avi", $id_avi);
+		$st->execute();
+		return $st->fetchColumn();
+	}
+	public static function deleteD($id_avi=null,$id_cli=null)
+	{
+		$st = db()->prepare("delete from t_j_avisrecommande_avr where avi_id=$id_avi and cli_id=$id_cli");
+		$st->execute();
+	}
 }

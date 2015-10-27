@@ -6,25 +6,13 @@ class T_j_avisdeconseille_avd extends Model {
 
 	public function __construct($id_avi=null,$id_cli=null) {
 	
-	if ($id_cli == null || $id_avi=null) {
-		$st = db()->prepare("insert into T_j_avisdeconseille_avd (cli_id,avi_id) values (1,1)");
+		if($id_avi!=null && $id_cli!=null)
+		{
+		$st=db()->prepare("insert into t_j_avisdeconseille_avd (cli_id,avi_id) values ($id_cli,$id_avi)");
 		$st->execute();
-		$row = $st->fetch();
-		$field = "avi_id";
-		$this->$field = $row[$field];
-	} else {
-		$st = db()->prepare("select * from T_j_avisdeconseille_avd where avi_id=:id_avi and cli_id:=id_cli");
-		$st->bindValue(":id_cli", $id_cli);
-		$st->bindValue(":id_avi", $id_avi);
-		$st->execute();
-		if ($st->rowCount() != 1) {
-			throw new Exception("Not in table: T_e_avis_avi id: ".$id );
-		} else {
-			$row = $st->fetch(PDO::FETCH_ASSOC);
-			$this->_avi_id = $id_avi;
-			$this->_cli_id = $id_cli;
-			
-			}
+		}
+		else {
+			throw new Exception ("Interdiction de créer un objet avec des valuers nulles avi : ".$id_avi."cli : ".$id_cli);
 		}
 	}
 
@@ -55,6 +43,20 @@ class T_j_avisdeconseille_avd extends Model {
 		// $st->bindValue(":id_avi", $id_avi);
 		$st->execute();
 		return $st->fetchColumn();
+	}
+
+	public static function countAvisdByClient($id_avi=null,$id_cli=null) {
+		$class = get_called_class();
+		$table = strtolower($class);
+		$st = db()->prepare("select count(*) from t_j_avisdeconseille_avd where avi_id=$id_avi and cli_id=$id_cli");
+		// $st->bindValue(":id_avi", $id_avi);
+		$st->execute();
+		return $st->fetchColumn();
+	}
+	public static function deleteD($id_avi=null,$id_cli=null)
+	{
+		$st = db()->prepare("delete from t_j_avisdeconseille_avd where avi_id=$id_avi and cli_id=$id_cli");
+		$st->execute();
 	}
 
 }
