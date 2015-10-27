@@ -56,30 +56,30 @@ if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
 	echo "<p>".$data->jeu_prixttc." €</p>";
 	if($data->jeu_stock != 0){
 		echo "<p>En stock : ".$data->jeu_stock." exemplaires</p>";
-		
-		$c = new T_e_commande_comController();
-		//var_dump($c->verifExistenceLC($data->jeu_id));
-		if(!$c->verifExistenceLC($data->jeu_id)){
-			echo "<span id='testLC'></span>";
-		}
+		if(isset($_SESSION['client']) && !empty($_SESSION['client'])){
+			$c = new T_e_commande_comController();
+			//var_dump($c->verifExistenceLC($data->jeu_id));
+			if(!$c->verifExistenceLC($data->jeu_id)){
+				echo "<span id='testLC'></span>";
+			}
+				
+				echo "<div id='divAddPanier'>";
+				echo "<form id='formAddPanier' method='post'>";
+				echo "<input type='hidden'  id='ipt_idjeu' value='".$data->jeu_id."' name='ipt_idjeu'/>";
+				echo "<p><label for='ipt_quantite'> Quantite : </label>";
+				echo "<input type='number' id='ipt_quantite' name='ipt_quantite' value ='1' min='1' max='".$data->jeu_stock."'/></p>";
+				echo "<p class='btnPoz'><input id='addPanierSubmit' class='btn_btn' type='submit' name='addPanierSubmit' value='Ajouter au Panier'/></p>";
+				echo "</form>";
+				echo "</p></div>";
 			
-			echo "<div id='divAddPanier'>";
-			echo "<form id='formAddPanier' method='post'>";
-			echo "<input type='hidden'  id='ipt_idjeu' value='".$data->jeu_id."' name='ipt_idjeu'/>";
-			echo "<p><label for='ipt_quantite'> Quantite : </label>";
-			echo "<input type='number' id='ipt_quantite' name='ipt_quantite' value ='1' min='1' max='".$data->jeu_stock."'/></p>";
-			echo "<p class='btnPoz'><input id='addPanierSubmit' class='btn_btn' type='submit' name='addPanierSubmit' value='Ajouter au Panier'/></p>";
-			echo "</form>";
-			echo "</p></div>";
-		
-			//form de suppression de la ligne de commande
-			echo "<div id='divDelPanier'>";
-			echo "<p class='btnPoz'><form id='formDelPanier' method='post'>";
-			echo "<input type='hidden' name='ipt_idjeusup' id='ipt_idjeusup' value='".$data->jeu_id."' />";
-			echo "<input type='submit' id='btnDelPanier' class='btn_btn' value='Supprimer du panier'/>";
-			echo "</form>";
-			echo "</p></div>";
-		
+				//form de suppression de la ligne de commande
+				echo "<div id='divDelPanier'>";
+				echo "<p class='btnPoz'><form id='formDelPanier' method='post'>";
+				echo "<input type='hidden' name='ipt_idjeusup' id='ipt_idjeusup' value='".$data->jeu_id."' />";
+				echo "<input type='submit' id='btnDelPanier' class='btn_btn' value='Supprimer du panier'/>";
+				echo "</form>";
+				echo "</p></div>";
+		}
 	}else
 		echo "<p id='rupture'>En rupture de stock</p>";
 	//Bouton d'ajout de favoris
