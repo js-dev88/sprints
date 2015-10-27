@@ -68,6 +68,9 @@ class T_e_commande_com extends Model {
 		while($row = $st->fetch(PDO::FETCH_ASSOC)) {
 			$list[] = new T_e_commande_com($idclient,$row["jeu_id"]);
 			}
+		if(count($list)==0){
+			
+		}
 		return $list;
 	}
 

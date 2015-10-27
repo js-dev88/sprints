@@ -36,10 +36,10 @@ class T_e_commande_comController extends Controller {
 	}
 
 	public function listeArticlesPanier(){
-		$client=unserialize($_SESSION['client']);
-		$id = $client->cli_id;
-		$list = T_e_commande_com::findPanier($id);
-		return $list;
+			$client=unserialize($_SESSION['client']);
+			$id = $client->cli_id;
+			$list = T_e_commande_com::findPanier($id);
+			return $list;
 	}
 	
 	public function verifExistenceLC($idjeu){

@@ -5,16 +5,10 @@ class T_e_jeuvideo_jeuController extends Controller {
 	
 
 	public function view() {
-		// try {
-			
+		
 			$b = new T_e_jeuvideo_jeu(parameters()["id"]);
 			$nbAvis = count(T_e_avis_avi::FindAll($b->jeu_id));
-			// throw new Exception('nbavis :'.$nbAvis);
-			// if(isset($_POST['pouce_id_avi0']) && isset($_POST['pouce_id_cli0']) && isset($_POST['submit_vert0']))
-			// {
-			// 	 // throw new Exception('coucou');
-			// 	$recommend = new T_j_avisrecommande_avr ($_POST['pouce_id_avi0'],$_POST['pouce_id_cli0']);
-			// }
+			
 			for ($i=0; $i < $nbAvis; $i++) { 
 				if(isset($_POST['pouce_id_avi'.$i]) && isset($_POST['pouce_id_cli'.$i]) && isset($_POST['submit_vert'.$i]))
 			{
@@ -50,10 +44,6 @@ class T_e_jeuvideo_jeuController extends Controller {
 			}
 			}
 			$this->render("view",$b);
-
-		// } catch (Exception $e) {
-		//     $this->render("error");
-		// }
 	}
 	
 

@@ -14,7 +14,8 @@ jQuery(document).ready(function(){
 				switch (msg) {
 				    case '0': $("#msgError").html("<p>Format Mail invalide</p>");
 				    	 break;
-				    case '1': 
+				    case '1': 		
+
 										$("#connectFormdiv").css('display','none');
 										$("#btnconnection,#btninscription").css('display','none');
 										$("#btnprofil").css({
@@ -25,8 +26,8 @@ jQuery(document).ready(function(){
 										'display' : 'inline-block',
 										'float' : 'left'
 									});								
-    							refresh();
-
+    							
+									refresh();
 
 				     	 break;
 				    case '2': $("#msgError").html("<p>Mot de passe vide</p>");
@@ -85,6 +86,7 @@ function affichemenu(){
 function refresh(){
 $('#affichebtn').load('?r=site/index #affichebtn');
 $('#pseudo').load('?r=site/index #pseudo'); 
+$('#msgNbArticles').load('?r=site/index #msgNbArticles'); 
 }
 
 
