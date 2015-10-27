@@ -148,7 +148,10 @@ foreach (T_e_avis_avi::FindAll() as $avi) {
 	if($avi->jeu_id==$data->jeu_id)
 	{
 		$client = new T_e_client_cli($avi->cli_id);
-		$clientconnect=unserialize($_SESSION['client']);
+		if(!empty($_SESSION['client']))
+		{
+			$clientconnect=unserialize($_SESSION['client']);
+		}
 		echo "<div class='customer-name'>";
 		echo "<p class='avis_p'>".$client->cli_pseudo."</p>";
 		echo "<p class='avis_p'>Posté le : ".date("d-m-Y",strtotime($avi->avi_date))."</p>";
@@ -162,13 +165,19 @@ foreach (T_e_avis_avi::FindAll() as $avi) {
 		echo "<div class='pouce'>";
 		echo "<form method='post' id='form_poucevert$compteur' action='#'>";
 		echo "<input value=\"".$avi->avi_id."\" type='hidden' name='pouce_id_avi$compteur'></input>";
+		if(!empty($_SESSION['client']))
+		{
 		echo "<input value=\"".$clientconnect->cli_id."\" type='hidden' name='pouce_id_cli$compteur'></input>";
+		}
 		echo "<button type='submit' name=\"submit_vert$compteur\" id='pouce_vert'></button>";
 		echo "</form>";
 		echo "<span id='val_vert'>$nbavisr</span>";
 		echo "<form method='post' id='form_poucerouge$compteur' action='#'>";
 		echo "<input value=\"".$avi->avi_id."\" type='hidden' name='rpouce_id_avi$compteur'></input>";
+		if(!empty($_SESSION['client']))
+		{
 		echo "<input value=\"".$clientconnect->cli_id."\" type='hidden' name='rpouce_id_cli$compteur'></input>";
+		}
 		echo "<button type='submit' name=\"submit_rouge$compteur\" id='pouce_rouge'></button>";
 		echo "</form>";
 		echo "<span id='val_rouge'>$nbavisdec</span>";
